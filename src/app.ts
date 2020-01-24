@@ -58,6 +58,7 @@ class ProjectInput {
       enteredDescription.trim().length === 0 ||
       enteredPeople.trim().length === 0
     ) {
+      alert("Invalid input, please try again !");
     }
   }
 
