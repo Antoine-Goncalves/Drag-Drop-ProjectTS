@@ -32,6 +32,10 @@ class ProjectInput {
     this.attach();
   }
 
+  private configure() {
+    this.element.addEventListener("submit");
+  }
+
   private attach() {
     this.hostElement.insertAdjacentElement("afterbegin", this.element);
   }
