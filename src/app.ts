@@ -48,7 +48,7 @@ class ProjectInput {
     this.attach();
   }
 
-  private gatherUserInput(): [string, string, number] {
+  private gatherUserInput(): [string, string, number] | void {
     const enteredTitle = this.titleInputElement.value;
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = this.peopleInputElement.value;
@@ -59,6 +59,9 @@ class ProjectInput {
       enteredPeople.trim().length === 0
     ) {
       alert("Invalid input, please try again !");
+      return;
+    } else {
+      return [enteredTitle, enteredDescription, +enteredPeople];
     }
   }
 
