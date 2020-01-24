@@ -2,6 +2,7 @@ class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLFormElement;
+  titleInputElement: HTMLInputElement;
 
   constructor() {
     this.templateElement = document.getElementById(
