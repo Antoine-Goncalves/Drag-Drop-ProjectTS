@@ -78,7 +78,10 @@ class ProjectList {
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${this.type}-projects`;
     this.attach();
+    this.renderContent();
   }
+
+  addProject() {}
 
   private renderContent() {
     const listId = `${this.type}-projects-list`;
@@ -173,7 +176,6 @@ class ProjectInput {
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
-      console.log(title, desc, people);
       this.clearInput();
     }
   }
@@ -188,3 +190,5 @@ class ProjectInput {
 }
 
 const prjInput = new ProjectInput();
+const activePrjList = new ProjectList("active");
+const finishedPrjList = new ProjectList("finished");
