@@ -29,10 +29,14 @@ class ProjectInput {
       "#people"
     ) as HTMLInputElement;
 
+    this.configure();
     this.attach();
   }
 
-  private submitHandler(event: Event) {}
+  private submitHandler(event: Event) {
+    event.preventDefault();
+    console.log(this.titleInputElement.value);
+  }
 
   private configure() {
     this.element.addEventListener("submit", this.submitHandler);
