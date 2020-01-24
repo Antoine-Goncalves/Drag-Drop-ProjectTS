@@ -18,6 +18,11 @@ class ProjectInput {
     );
     this.element = importedNode.firstElementChild as HTMLFormElement;
     this.element.id = "user-input";
+
+    this.titleInputElement = this.element.querySelector("#title");
+    this.descriptionInputElement = this.element.querySelector("#description");
+    this.peopleInputElement = this.element.querySelector("#people");
+
     this.attach();
   }
 
