@@ -48,10 +48,12 @@ class ProjectInput {
     this.attach();
   }
 
+  private gatherUserInput() {}
+
   @autobind
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.titleInputElement.value);
+    this.gatherUserInput();
   }
 
   private configure() {
