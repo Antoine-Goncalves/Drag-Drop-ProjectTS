@@ -1,3 +1,23 @@
+// Validation
+
+interface Validatable {
+  value: string | number;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+}
+
+function validate(validatableInput: Validatable) {
+  let isValid = true;
+
+  if (validatableInput.required) {
+    isValid = isValid && validatableInput.value.toString().trim().length !== 0;
+  }
+  return isValid;
+}
+
 // autobind decorator
 
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
@@ -54,9 +74,9 @@ class ProjectInput {
     const enteredPeople = this.peopleInputElement.value;
 
     if (
-      enteredTitle.trim().length === 0 ||
-      enteredDescription.trim().length === 0 ||
-      enteredPeople.trim().length === 0
+      validate({ value: enteredTitle, required: true, minLength: 5 }) &&
+      validate({ value: enteredDescription, required: true, minLength: 5 }) &&
+      validate({ value: enteredPeople, required: true, minLength: 5 })
     ) {
       alert("Invalid input, please try again !");
       return;
@@ -78,6 +98,7 @@ class ProjectInput {
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
       console.log(title, desc, people);
+      this.clearInput();
     }
   }
 
