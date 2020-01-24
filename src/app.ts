@@ -11,6 +11,7 @@ class ProjectState {
       return this.instance;
     }
     this.instance = new ProjectState();
+    return this.instance;
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
@@ -24,7 +25,7 @@ class ProjectState {
   }
 }
 
-const projectState = new ProjectState();
+const projectState = ProjectState.getInstance();
 
 // Validation
 
@@ -202,6 +203,7 @@ class ProjectInput {
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
+      projectState.addProject(title, desc, people);
       this.clearInput();
     }
   }
