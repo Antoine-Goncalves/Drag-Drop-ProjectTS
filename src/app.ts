@@ -99,6 +99,19 @@ class ProjectInput {
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = this.peopleInputElement.value;
 
+    const titleValidatable: Validatable = {
+      value: enteredTitle,
+      required: true
+    };
+    const descriptionValidatable: Validatable = {
+      value: enteredDescription,
+      required: true
+    };
+    const peopleValidatable: Validatable = {
+      value: enteredPeople,
+      required: true
+    };
+
     if (
       validate({ value: enteredTitle, required: true, minLength: 5 }) &&
       validate({ value: enteredDescription, required: true, minLength: 5 }) &&
