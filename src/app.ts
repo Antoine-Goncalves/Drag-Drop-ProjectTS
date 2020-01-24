@@ -76,7 +76,11 @@ class ProjectList {
       true
     );
     this.element = importedNode.firstElementChild as HTMLElement;
-    this.element.id = "user-input";
+    this.element.id = `${this.type}-projects`;
+  }
+
+  private attach() {
+    this.hostElement.insertAdjacentElement("afterbegin", this.element);
   }
 }
 
