@@ -13,4 +13,8 @@ class ProjectInput {
       true
     );
   }
+
+  private attach() {
+    this.hostElement.insertAdjacentElement("afterbegin");
+  }
 }
