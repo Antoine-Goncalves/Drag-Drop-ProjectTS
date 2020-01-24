@@ -17,9 +17,6 @@ class ProjectState {
 
   addListener(listenerFn: Function) {
     this.listeners.push(listenerFn);
-    for (const listenerFn of this.listeners) {
-      listenerFn(this.projects.slice());
-    }
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
@@ -30,6 +27,9 @@ class ProjectState {
       people: numOfPeople
     };
     this.projects.push(newProject);
+    for (const listenerFn of this.listeners) {
+      listenerFn(this.projects.slice());
+    }
   }
 }
 
@@ -119,14 +119,14 @@ class ProjectList {
 
     projectState.addListener((projects: any[]) => {
       this.assignedProjects = projects;
-      this.renderProject();
+      this.renderProjects();
     });
 
     this.attach();
     this.renderContent();
   }
 
-  private renderProject() {
+  private renderProjects() {
     const listEl = document.getElementById(
       `${this.type}-projects-list`
     )! as HTMLUListElement;
