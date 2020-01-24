@@ -32,8 +32,10 @@ class ProjectInput {
     this.attach();
   }
 
+  private submitHandler(event: Event) {}
+
   private configure() {
-    this.element.addEventListener("submit");
+    this.element.addEventListener("submit", this.submitHandler);
   }
 
   private attach() {
