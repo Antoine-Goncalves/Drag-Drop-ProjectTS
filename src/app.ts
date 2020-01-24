@@ -58,6 +58,10 @@ function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
   return adjDescriptor;
 }
 
+// ProjectList Class
+
+class ProjectList {}
+
 // ProjectInput Class
 class ProjectInput {
   templateElement: HTMLTemplateElement;
@@ -116,9 +120,9 @@ class ProjectInput {
     };
 
     if (
-      validate(titleValidatable) &&
-      validate(descriptionValidatable) &&
-      validate(peopleValidatable)
+      !validate(titleValidatable) ||
+      !validate(descriptionValidatable) ||
+      !validate(peopleValidatable)
     ) {
       alert("Invalid input, please try again !");
       return;
