@@ -1,3 +1,7 @@
+// Project State Management
+
+class ProjectState {}
+
 // Validation
 
 interface Validatable {
@@ -80,8 +84,6 @@ class ProjectList {
     this.attach();
     this.renderContent();
   }
-
-  addProject() {}
 
   private renderContent() {
     const listId = `${this.type}-projects-list`;
