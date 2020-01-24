@@ -1,6 +1,7 @@
 // Project State Management
 
 class ProjectState {
+  private listeners: any[] = [];
   private projects: any[] = [];
   private static instance: ProjectState;
 
@@ -12,6 +13,13 @@ class ProjectState {
     }
     this.instance = new ProjectState();
     return this.instance;
+  }
+
+  addListener(listenerFn: Function) {
+    this.listeners.push(listenerFn);
+    for (const listenerFn of this.listeners) {
+      listenerFn(this.projects.slice());
+    }
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
@@ -93,6 +101,7 @@ class ProjectList {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLElement;
+  assignedProjects: any[];
 
   constructor(private type: "active" | "finished") {
     this.templateElement = document.getElementById(
@@ -106,9 +115,16 @@ class ProjectList {
     );
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${this.type}-projects`;
+
+    projectState.addListener((projects: any[]) => {
+      this.assignedProjects = projects;
+    });
+
     this.attach();
     this.renderContent();
   }
+
+  private renderProject() {}
 
   private renderContent() {
     const listId = `${this.type}-projects-list`;
