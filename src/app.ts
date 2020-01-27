@@ -2,6 +2,8 @@
 
 interface Draggable {}
 
+interface DragTarget {}
+
 // Project Type
 enum ProjectStatus {
   Active,
