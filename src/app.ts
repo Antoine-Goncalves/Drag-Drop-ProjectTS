@@ -1,3 +1,7 @@
+// Dra & Drop Interfaces
+
+interface Draggable {}
+
 // Project Type
 enum ProjectStatus {
   Active,
