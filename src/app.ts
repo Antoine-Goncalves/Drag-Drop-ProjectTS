@@ -191,8 +191,12 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>
   }
 
   @autobind
-  dragStartHandler(event: DragEvent) {}
-  dragEndHandler(event: DragEvent) {}
+  dragStartHandler(event: DragEvent) {
+    console.log(event);
+  }
+  dragEndHandler(_: DragEvent) {
+    console.log("DragEnd");
+  }
 
   configure() {
     this.element.addEventListener("dragstart", this.dragStartHandler);
