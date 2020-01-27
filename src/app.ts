@@ -65,6 +65,8 @@ class ProjectState extends State<Project> {
       listenerFn(this.projects.slice());
     }
   }
+
+  moveProject() {}
 }
 
 const projectState = ProjectState.getInstance();
@@ -234,7 +236,9 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     }
   }
 
-  dropHandler(_: DragEvent) {}
+  dropHandler(event: DragEvent) {
+    const prjId = event.dataTransfer!.getData("text/plain");
+  }
 
   @autobind
   dragLeaveHandler(_: DragEvent) {
