@@ -1,6 +1,9 @@
-// Dra & Drop Interfaces
+// Drag & Drop Interfaces
 
-interface Draggable {}
+interface Draggable {
+  dragStartHandler();
+  dragEndHandler();
+}
 
 interface DragTarget {}
 
