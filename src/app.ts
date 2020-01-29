@@ -281,7 +281,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     const listId = `${this.type}-projects-list`;
     this.element.querySelector("ul")!.id = listId;
     this.element.querySelector("h2")!.textContent =
-      this.type.toUpperCase() + " PROJETS";
+      "PROJETS " + this.type.toUpperCase();
   }
 
   private renderProjects() {
