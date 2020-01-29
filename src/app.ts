@@ -188,9 +188,9 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement>
 
   get persons() {
     if (this.project.people === 1) {
-      return "1 person";
+      return "1 personne";
     } else {
-      return `${this.project.people} persons`;
+      return `${this.project.people} personnes`;
     }
   }
 
