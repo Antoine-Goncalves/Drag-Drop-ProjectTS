@@ -13,8 +13,8 @@ interface DragTarget {
 
 // Project Type
 enum ProjectStatus {
-  Active,
-  Finished
+  Actif,
+  Terminee
 }
 class Project {
   constructor(
@@ -58,7 +58,7 @@ class ProjectState extends State<Project> {
       title,
       description,
       numOfPeople,
-      ProjectStatus.Active
+      ProjectStatus.Actif
     );
     this.projects.push(newProject);
     this.updateListeners();
@@ -229,7 +229,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
   implements DragTarget {
   assignedProjects: Project[];
 
-  constructor(private type: "active" | "finished") {
+  constructor(private type: "actif" | "terminée") {
     super("project-list", "app", false, `${type}-projects`);
     this.assignedProjects = [];
 
@@ -251,7 +251,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     const prjId = event.dataTransfer!.getData("text/plain");
     projectState.moveProject(
       prjId,
-      this.type === "active" ? ProjectStatus.Active : ProjectStatus.Finished
+      this.type === "actif" ? ProjectStatus.Actif : ProjectStatus.Terminee
     );
   }
 
@@ -267,10 +267,10 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     this.element.addEventListener("drop", this.dropHandler);
     projectState.addListener((projects: Project[]) => {
       const relevantProjects = projects.filter(prj => {
-        if (this.type === "active") {
-          return prj.status === ProjectStatus.Active;
+        if (this.type === "actif") {
+          return prj.status === ProjectStatus.Actif;
         }
-        return prj.status === ProjectStatus.Finished;
+        return prj.status === ProjectStatus.Terminee;
       });
       this.assignedProjects = relevantProjects;
       this.renderProjects();
@@ -281,7 +281,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     const listId = `${this.type}-projects-list`;
     this.element.querySelector("ul")!.id = listId;
     this.element.querySelector("h2")!.textContent =
-      this.type.toUpperCase() + " PROJECTS";
+      this.type.toUpperCase() + " PROJETS";
   }
 
   private renderProjects() {
@@ -347,7 +347,7 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
       !validate(descriptionValidatable) ||
       !validate(peopleValidatable)
     ) {
-      alert("Invalid input, please try again !");
+      alert("Il manque quelque chose, réessayer s'il vous plait !");
       return;
     } else {
       return [enteredTitle, enteredDescription, +enteredPeople];
@@ -373,5 +373,5 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
 }
 
 const prjInput = new ProjectInput();
-const activePrjList = new ProjectList("active");
-const finishedPrjList = new ProjectList("finished");
+const activePrjList = new ProjectList("actif");
+const finishedPrjList = new ProjectList("terminée");
